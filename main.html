@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <script type="module" src="main.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-indigo-100 to-blue-100">
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-800">
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="flex shrink-0 items-center">
+                        <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                    </div>
+                    <div class="hidden sm:ml-6 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="#" id="Home" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Home</a>
+                            <a href="#" id="Comic" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Create a Comic</a>
+                            <a href="#" id="Buddy" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">My Buddy</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <!-- Login/Signup button (shown when logged out) -->
+                    <button id="authButton" class="rounded-full bg-gray-800 px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white">
+                        Login/Signup
+                    </button>
+                    <!-- Logout button (shown when logged in) -->
+                    <button id="logoutButton" class="rounded-full bg-red-600 px-4 py-2 text-white hover:bg-red-700 hidden">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="mt-12 mx-auto max-w-3xl text-center">
+        <h1 class="text-4xl font-bold text-gray-800">Welcome to Our Fun & Interactive Platform!</h1>
+        <p class="mt-4 text-lg text-gray-600">Explore, learn, and have fun. Click "Login/Signup" to access more features.</p>
+    </div>
+
+    <!-- Login/Signup Modal -->
+    <div id="authModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50">
+        <div class="relative w-96 glass-effect rounded-2xl p-8">
+            <button id="closeAuthModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800">
+                &times;
+            </button>
+            <h2 class="text-2xl font-bold text-gray-800 text-center">Login or Signup</h2>
+            <form id="authForm" class="mt-6 space-y-4">
+                <input type="email" id="email" placeholder="Email" class="w-full rounded-lg border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" required>
+                <input type="password" id="password" placeholder="Password" class="w-full rounded-lg border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" required>
+                <button type="submit" class="w-full rounded-lg bg-indigo-500 px-4 py-2 text-white hover:bg-indigo-600">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Info Section -->
+    <div id="userInfo" class="hidden mt-8 mx-auto max-w-3xl text-center">
+        <p class="text-lg text-gray-700">Welcome back, <span id="userEmail" class="font-semibold text-indigo-500"></span>!</p>
+    </div>
+</body>
+
+</html>
