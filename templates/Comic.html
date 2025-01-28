@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Comic Generator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Body and Background */
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #eef2ff, #cfe0fc);
+            margin: 0;
+            padding: 0;
+        }
+        /* Navigation Bar */
+        
+        nav {
+            background-color: #1f2937;
+            /* Tailwind's bg-gray-800 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav a {
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #374151;
+            /* Tailwind's bg-gray-700 */
+            color: #fff;
+        }
+        /* Main Content */
+        
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2rem;
+            color: #4b5563;
+            /* Tailwind's text-gray-800 */
+        }
+        
+        p {
+            font-size: 1rem;
+            color: #6b7280;
+            /* Tailwind's text-gray-600 */
+        }
+        /* Form Styling */
+        
+        form label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            /* Tailwind's text-gray-700 */
+            margin-bottom: 0.5rem;
+        }
+        
+        form input,
+        form textarea {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            /* Tailwind's border-gray-300 */
+            border-radius: 0.375rem;
+            /* Tailwind's rounded-lg */
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #374151;
+            /* Tailwind's text-gray-700 */
+            background: #fff;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        form input:focus,
+        form textarea:focus {
+            border-color: #6366f1;
+            /* Tailwind's indigo-400 */
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5);
+            /* Indigo focus ring */
+            outline: none;
+        }
+        
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: #6366f1;
+            /* Tailwind's bg-indigo-500 */
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #4f46e5;
+            /* Tailwind's bg-indigo-600 */
+        }
+        /* Glass Effect */
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        /* Result Section */
+        
+        .result {
+            background: rgba(239, 246, 255, 0.8);
+            /* Tailwind's bg-blue-50 */
+            border: 1px solid #93c5fd;
+            /* Tailwind's border-blue-300 */
+            padding: 20px;
+            border-radius: 0.5rem;
+            color: #1e3a8a;
+            /* Tailwind's text-blue-900 */
+        }
+        
+        .result h2 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            /* Tailwind's text-blue-900 */
+            margin-bottom: 1rem;
+        }
+        
+        .result pre {
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            /* Allows line breaks for preformatted text */
+            overflow-wrap: break-word;
+            max-width: 100%;
+            overflow-x: auto;
+            /* Horizontal scroll only if absolutely necessary */
+        }
+        
+        .comic-script {
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            /* Allows wrapping while keeping the preformatted text spacing */
+            overflow-wrap: break-word;
+            /* Ensures long words are wrapped */
+            max-width: 100%;
+            /* Prevents overflowing beyond the container width */
+        }
+        
+        .result a {
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 600;
+            color: #fff;
+            background-color: #3b82f6;
+            /* Tailwind's bg-blue-500 */
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        
+        .result a:hover {
+            background-color: #2563eb;
+            /* Tailwind's bg-blue-600 */
+        }
+        /* Media Queries */
+        
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            p {
+                font-size: 0.875rem;
+            }
+            button {
+                font-size: 0.875rem;
+            }
+            form input,
+            form textarea {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-indigo-100 to-blue-100">
+    
+    <nav class="bg-gray-800">
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="flex shrink-0 items-center">
+                        <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                    </div>
+                    <div class="hidden sm:ml-6 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="#" id="Home" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Home</a>
+                            <a href="#" id="Comic" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Create a Comic</a>
+                            <a href="#" id="Buddy" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">My Buddy</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                
+                    <button id="authButton" class="rounded-full bg-gray-800 px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white">
+                        
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-12 mx-auto max-w-3xl">
+        <h1 class="text-3xl font-bold text-gray-800 text-center">Educational Comic Generator</h1>
+        <p class="mt-2 text-lg text-gray-600 text-center">Create engaging comics for education. Fill in the details below to generate your comic script!</p>
+
+        <form id="comic-form" class="mt-6">
+            <label for="topic" class="block text-gray-700 font-medium">Topic:</label>
+            <input type="text" id="topic" name="topic" placeholder="e.g., Photosynthesis" class="w-full rounded-lg border px-4 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-400" required>
+
+            <label for="target_audience" class="block text-gray-700 font-medium mt-4">Target Audience:</label>
+            <input type="text" id="target_audience" name="target_audience" placeholder="e.g., Adults (20-25)" class="w-full rounded-lg border px-4 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-400" required>
+
+            <label for="objective" class="block text-gray-700 font-medium mt-4">Objective:</label>
+            <textarea id="objective" name="objective" placeholder="e.g., Explain the process of photosynthesis in an engaging way" rows="4" class="w-full rounded-lg border px-4 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-400" required></textarea>
+
+            <button type="submit" class="w-full rounded-lg bg-indigo-500 px-4 py-2 mt-4 text-white hover:bg-indigo-600">Generate Comic Script</button>
+        </form>
+
+        <div class="result hidden mt-6 p-4 glass-effect rounded-lg">
+            <h2 class="text-xl font-bold text-gray-800">Generated Comic Script:</h2>
+            <pre id="comic-script" class="mt-2 text-gray-700"></pre>
+            <a id="download-link" href="#" target="_blank" class="inline-block mt-4 rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">Download PDF</a>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#comic-form').on('submit', function(e) {
+                e.preventDefault();
+
+                const data = {
+                    topic: $('#topic').val(),
+                    target_audience: $('#target_audience').val(),
+                    objective: $('#objective').val()
+                };
+
+                $.ajax({
+                    url: '/generate_comic',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function(response) {
+                        $('#comic-script').text(response.script);
+                        $('#download-link').attr('href', response.pdf_url);
+                        $('.result').removeClass('hidden');
+                    },
+                    error: function(xhr) {
+                        const errorMessage = xhr.responseJSON && xhr.responseJSON.error ? xhr.responseJSON.error : 'An error occurred.';
+                        alert('Error: ' + errorMessage);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
