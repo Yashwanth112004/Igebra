@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="login.js"></script>
+</head>
+
+<body class="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+    <div class="flex min-h-full items-center justify-center px-6 py-12 lg:px-8">
+        <div class="glass-effect sm:mx-auto sm:w-full sm:max-w-md rounded-2xl p-8">
+            <div class="text-center">
+                <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Logo">
+                <h2 class="mt-6 text-3xl font-bold tracking-tight text-white">Sign in to Your Account</h2>
+            </div>
+
+            <form id="loginForm" class="space-y-6 mt-6">
+                <input type="email" id="email" placeholder="Email" required class="block w-full bg-white/20 text-white placeholder:text-gray-200 px-3 py-2 rounded-md">
+                <input type="password" id="password" placeholder="Password" required class="block w-full bg-white/20 text-white placeholder:text-gray-200 px-3 py-2 rounded-md">
+                <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Login</button>
+            </form>
+            <p class="mt-4 text-center text-sm text-white">Don't have an account? <a href="register.html" class="text-indigo-300 hover:underline">Register</a></p>
+        </div>
+    </div>
+</body>
+
+</html>
